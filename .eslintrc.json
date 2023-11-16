@@ -1,0 +1,81 @@
+{
+    "root": true,
+    "parser": "@babel/eslint-parser",
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:jsx-a11y/recommended",
+      "plugin:react-hooks/recommended",
+      "airbnb",
+      "prettier"
+    ],
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "node": true,
+      "jest": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "requireConfigFile": false,
+      "babelOptions": {
+        "presets": ["@babel/preset-react"]
+     },
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      },
+      "import/resolver": {
+        "node": {
+          "moduleDirectory": ["node_modules", "src"]
+        }
+      }
+    },
+    "plugins": [],
+    "rules": {
+      "react/react-in-jsx-scope": "off",
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "no-use-before-define": "off",
+      "no-console": "warn",
+      "no-plusplus": "off",
+      "func-names": "off",
+      "no-process-exit": "off",
+      "object-shorthand": "off",
+      "class-methods-use-this": "off",
+      "react/jsx-props-no-spreading": "off",
+      "react/jsx-indent": "off",
+      "react/jsx-one-expression-per-line": "off",
+      "no-shadow": "error",
+      "arrow-parens": "off",
+      "object-curly-newline": "off",
+      "implicit-arrow-linebreak": "off",
+      "function-paren-newline": "off",
+      "react/function-component-definition": [
+        "warn",
+        {
+          "namedComponents": "arrow-function"
+        }
+      ],
+      "comma-dangle": [
+        "error",
+        {
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "arrays": "always-multiline",
+          "functions": "never"
+        }
+      ],
+      "jsx-a11y/img-redundant-alt": "off",
+      "no-restricted-globals": "off"
+    }
+  }
+  

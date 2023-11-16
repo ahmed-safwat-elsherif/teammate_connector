@@ -12,6 +12,7 @@ import globalStyle from './globalStyle';
 import theme from '../utils/theme';
 import LayoutProvider from '../providers/LayoutProvider';
 import SyncLogs from '../pages/SyncLogs';
+import Queries from '../pages/Queries';
 
 const App = () => (
   <ThemeProvider theme={theme}>
@@ -22,6 +23,7 @@ const App = () => (
           <LayoutProvider>
             <Routes>
               <Route index element={<Home />} />
+              <Route path="queries" element={<Queries />} />
               <Route path="sync">
                 <Route index element={<SyncLogs />} />
                 <Route path="settings" element={<SyncSettings />} />

@@ -6,7 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Navbar from '../components/shared/Navbar';
 import Loader from '../components/shared/Loader';
 import Footer from '../components/shared/Footer';
-import Breadcrump from '../components/shared/Breadcrump';
+import Breadcrumb from '../components/shared/Breadcrumb';
 
 const LayoutProvider = props => {
   const { children, isLoading } = props;
@@ -17,7 +17,7 @@ const LayoutProvider = props => {
       <Stack minHeight="100vh" minWidth="100%" width="fit-content">
         <CssBaseline />
         <Navbar />
-        <Breadcrump />
+        <Breadcrumb />
         <Box component="main" sx={{ flexGrow: 1, p: 3, backgroundColor: '#DDF2FD' }}>
           <Suspense fallback={<Loader />}>{children}</Suspense>
         </Box>

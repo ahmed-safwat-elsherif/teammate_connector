@@ -34,7 +34,7 @@ const Home = () => (
       ))}
     </Stack>
     <Box>
-      <Button color="secondary" variant="contained">
+      <Button color="info" variant="contained">
         Run sync
       </Button>
     </Box>

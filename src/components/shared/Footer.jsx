@@ -17,7 +17,7 @@ const Footer = () => (
         },
       }}
     >
-      Footer
+      Teammate+ Connector
     </Stack>
   </Stack>
 );

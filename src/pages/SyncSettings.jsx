@@ -1,5 +1,7 @@
 import React from 'react';
 
-const SyncSettings = () => <div>SyncSettings</div>;
+import SettingsForm from '../components/sync/settings/SettingsForm';
+
+const SyncSettings = () => <SettingsForm />;
 
 export default SyncSettings;

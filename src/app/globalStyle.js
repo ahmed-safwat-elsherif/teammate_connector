@@ -1,6 +1,7 @@
 export default {
   body: {
     fontFamily: 'Roboto',
+    minHeight: '100vh',
   },
   'a, :link': {
     color: 'inherit',

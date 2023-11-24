@@ -22,7 +22,7 @@ const Auth = () => {
       setLoading(true);
       login(formValues)
         .then(res => {
-          dispatch(startUserSession(res.data.token));
+          dispatch(startUserSession(res.data));
           navigate('/', { replace: true });
         })
         .finally(() => {

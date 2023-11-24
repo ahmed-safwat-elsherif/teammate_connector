@@ -1,9 +1,9 @@
 import parseToken from './parseToken';
 
-const formatTokens = token => {
-  const data = parseToken(token);
+const formatTokens = tokens => {
+  const data = parseToken(tokens.idToken);
 
-  return { ...data, isLoggedIn: true };
+  return { ...data, ...tokens, isLoggedIn: true };
 };
 
 export default formatTokens;

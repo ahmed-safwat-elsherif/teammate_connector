@@ -7,6 +7,7 @@ import Navbar from '../components/shared/Navbar';
 import Loader from '../components/shared/Loader';
 import Footer from '../components/shared/Footer';
 import Breadcrumb from '../components/shared/Breadcrumb';
+import Snackbar from '../components/shared/Snackbar';
 
 const LayoutProvider = props => {
   const { children, isLoading } = props;
@@ -14,6 +15,7 @@ const LayoutProvider = props => {
   return (
     <>
       {isLoading && <Loader />}
+      <Snackbar />
       <Stack minHeight="100vh" minWidth="100%" width="fit-content">
         <CssBaseline />
         <Navbar />

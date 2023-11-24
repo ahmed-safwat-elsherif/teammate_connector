@@ -23,7 +23,14 @@ const Select = props => {
   return (
     <FormControl variant={variant} sx={{ minWidth: 120, ...sx }}>
       <InputLabel id={id}>{label}</InputLabel>
-      <MuiSelect id={id} variant={variant} value={value} onChange={handleChange} {...rest}>
+      <MuiSelect
+        id={id}
+        variant={variant}
+        value={value}
+        onChange={handleChange}
+        size="small"
+        {...rest}
+      >
         <MenuItem value="">
           <em>Select</em>
         </MenuItem>
@@ -45,7 +52,7 @@ Select.propTypes = {
   onChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string,
+      label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     })
   ),

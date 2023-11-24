@@ -1,16 +1,18 @@
-import React from 'react';
-import moment from 'moment';
+import { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import Divider from '@mui/material/Divider';
 
 import { CRON_TYPES } from '../../../utils/cronJob';
 import Select from '../../shared/Select';
 import TimePicker from '../../shared/TimerPicker';
 import DatePicker from '../../shared/DatePicker';
 
-const days = [
+const monthDays = Array.from(Array(28), (_, index) => ({ value: index + 1, label: index + 1 }));
+
+const weekDays = [
   { value: 6, label: 'Saterday' },
   { value: 0, label: 'Sunday' },
   { value: 1, label: 'Monday' },
@@ -27,24 +29,61 @@ const styles = {
 
 const TimingSelectors = props => {
   const { type, values, onChange } = props;
+
+  const handleSelectQuarter = useCallback(
+    (e, quarterIndex) => {
+      const newQuarters = values.quarterMonths.map((q, index) =>
+        index === quarterIndex ? { ...q, value: e.target.value } : q
+      );
+      onChange({ target: { name: 'quarterMonths', value: newQuarters } });
+    },
+    [onChange, values.quarterMonths]
+  );
+
   return (
-    <Stack direction="row" spacing={3}>
-      <DatePicker name="1" value={moment()} />
-      <Box>Monthes</Box>
-      <Box>
-        {type === CRON_TYPES.WEEKLY && (
+    <Stack spacing={3}>
+      {type === CRON_TYPES.QUARTERLY && (
+        <Stack direction="row" spacing={1} divider={<Divider flexItem sx={{ borderWidth: 1 }} />}>
+          {values.quarterMonths.map((quarter, index) => (
+            <DatePicker
+              label={`Quarter ${index + 1}`}
+              key={quarter.key}
+              onChange={e => handleSelectQuarter(e, index)}
+              value={quarter.value}
+              minDate={quarter.range[0]}
+              maxDate={quarter.range[1]}
+            />
+          ))}
+        </Stack>
+      )}
+      {type === CRON_TYPES.MONTHLY && (
+        <Box>
           <Select
-            id="cron-type"
-            label="Day"
-            name="day"
+            id="day-of-month"
+            label="Day of month"
+            name="monthDay"
             sx={styles.select}
             variant="filled"
-            value={values.day}
+            value={values.monthDay}
             onChange={onChange}
-            options={days}
+            options={monthDays}
           />
-        )}
-      </Box>
+        </Box>
+      )}
+      {type === CRON_TYPES.WEEKLY && (
+        <Box>
+          <Select
+            id="day-of-week"
+            label="Day"
+            name="weekDay"
+            sx={styles.select}
+            variant="filled"
+            value={values.weekDay}
+            onChange={onChange}
+            options={weekDays}
+          />
+        </Box>
+      )}
       <Box>
         <TimePicker
           name="time"
@@ -64,7 +103,8 @@ TimingSelectors.propTypes = {
   values: PropTypes.shape({
     type: PropTypes.string,
     time: PropTypes.shape({}),
-    day: PropTypes.number,
+    monthDay: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    weekDay: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     quarterMonths: PropTypes.arrayOf(PropTypes.shape({})),
   }),
 };

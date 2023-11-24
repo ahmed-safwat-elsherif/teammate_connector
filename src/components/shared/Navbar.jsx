@@ -13,7 +13,7 @@ const Navbar = () => (
     <Container maxWidth="xl">
       <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
         <Box component={Link} to="/" fontSize={30}>
-          LOGO
+          Teammate+
         </Box>
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">

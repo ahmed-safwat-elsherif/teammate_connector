@@ -9,8 +9,8 @@ import ProfileButton from './ProfileButton';
 const Navbar = () => (
   <AppBar position="static" sx={{ backgroundColor: '#164863' }}>
     <Container maxWidth="xl">
-      <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
-        <Box component={Link} to="/" m={3} fontSize={25} color="white" fontWeight={500}>
+      <Toolbar disableGutters variant="dense" sx={{ justifyContent: 'space-between' }}>
+        <Box component={Link} to="/" m={2} fontSize={25} color="white" fontWeight={500}>
           Teammate+ Connector
         </Box>
         <Box sx={{ flexGrow: 0 }}>

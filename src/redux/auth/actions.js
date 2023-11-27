@@ -2,6 +2,7 @@ import { authSlice } from './reducer';
 import formatTokens from '../../utils/formatTokens';
 import { store } from '../store';
 import { refreshTokens } from '../../api/auth';
+import { endLoading, startLoading } from '../status/actions';
 
 export const {
   login,
@@ -24,12 +25,16 @@ export const refreshUserSession = () => dispatch => {
   const { isLoggedIn, refreshToken } = store?.getState().auth || {};
 
   if (isLoggedIn) {
+    dispatch(startLoading());
     refreshTokens(refreshToken)
       .then(response => {
         dispatch(startUserSession({ ...response.data, refreshToken }));
       })
       .catch(() => {
         dispatch(revokeUserSession());
+      })
+      .finally(() => {
+        dispatch(endLoading());
       });
   }
 };

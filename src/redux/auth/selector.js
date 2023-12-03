@@ -9,3 +9,8 @@ export const selectRefreshToken = createSelector(
   state => state.auth,
   auth => auth.refresh_token
 );
+
+export const selectUser = createSelector(
+  state => state.auth,
+  auth => auth.user
+);

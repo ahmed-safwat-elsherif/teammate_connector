@@ -1,16 +1,21 @@
 import { Suspense } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
+
 import Navbar from '../components/shared/Navbar';
 import Loader from '../components/shared/Loader';
 import Footer from '../components/shared/Footer';
 import Breadcrumb from '../components/shared/Breadcrumb';
 import Snackbar from '../components/shared/Snackbar';
+import { selectLoading } from '../redux/status/selectors';
 
 const LayoutProvider = props => {
-  const { children, isLoading } = props;
+  const { children } = props;
+  const isLoading = useSelector(selectLoading);
 
   return (
     <>
@@ -31,11 +36,6 @@ const LayoutProvider = props => {
 
 LayoutProvider.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
-  isLoading: PropTypes.bool,
-};
-
-LayoutProvider.defaultProps = {
-  isLoading: false,
 };
 
 export default LayoutProvider;

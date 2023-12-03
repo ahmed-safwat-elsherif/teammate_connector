@@ -13,7 +13,7 @@ import DatePicker from '../../shared/DatePicker';
 const monthDays = Array.from(Array(28), (_, index) => ({ value: index + 1, label: index + 1 }));
 
 const weekDays = [
-  { value: 6, label: 'Saterday' },
+  { value: 6, label: 'Saturday' },
   { value: 0, label: 'Sunday' },
   { value: 1, label: 'Monday' },
   { value: 2, label: 'Tuesday' },

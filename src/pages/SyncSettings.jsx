@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
 
 import SettingsForm from '../components/sync/settings/SettingsForm';
 import { getSettings } from '../api/sync';
+import Loader from '../components/shared/Loader';
 
 const SyncSettings = () => {
   const [loading, setLoading] = useState(true);
@@ -25,13 +25,7 @@ const SyncSettings = () => {
       });
   }, []);
 
-  if (loading) {
-    return (
-      <Box>
-        <CircularProgress />
-      </Box>
-    );
-  }
+  if (loading) return <Loader />;
 
   if (error) {
     return (

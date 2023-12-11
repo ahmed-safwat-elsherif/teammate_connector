@@ -87,6 +87,8 @@ const SettingsForm = props => {
     [formValues]
   );
 
+  const canSubmit = formValues?.type;
+
   return (
     <>
       <Stack component="form" onSubmit={handleSubmit} minHeight="calc(100vh - 250px)">
@@ -97,6 +99,7 @@ const SettingsForm = props => {
             sx={{ minWidth: 100 }}
             variant="contained"
             color="success"
+            disabled={!canSubmit}
           >
             Save
           </LoadingButton>

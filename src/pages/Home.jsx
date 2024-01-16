@@ -2,13 +2,13 @@ import React from 'react';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
 import { styled } from '@mui/material/styles';
 import PunchClockTwoToneIcon from '@mui/icons-material/PunchClockTwoTone';
 import IntegrationInstructionsTwoToneIcon from '@mui/icons-material/IntegrationInstructionsTwoTone';
 import ReceiptLongTwoToneIcon from '@mui/icons-material/ReceiptLongTwoTone';
 import { Link } from 'react-router-dom';
+import RunSyncButton from '../components/sync/RunSyncButton';
 
 const navigationCards = [
   {
@@ -41,9 +41,7 @@ const Home = () => (
       ))}
     </Stack>
     <Box>
-      <Button color="info" variant="contained">
-        Run sync
-      </Button>
+      <RunSyncButton />
     </Box>
   </Stack>
 );

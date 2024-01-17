@@ -10,7 +10,7 @@ import CheckIcon from '@mui/icons-material/Check';
 
 import TextField from '../../components/shared/TextField';
 import Popup from '../../components/shared/Popup';
-import { updatePassword } from '../../api/auth';
+import { updatePassword } from '../../api/user';
 import { refreshUserSession } from '../../redux/auth/actions';
 
 const initials = {

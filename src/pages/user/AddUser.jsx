@@ -7,8 +7,8 @@ import Stack from '@mui/material/Stack';
 import LoadingButton from '@mui/lab/LoadingButton';
 import CancelIcon from '@mui/icons-material/Cancel';
 import TextField from '../../components/shared/TextField';
-import { register } from '../../api/auth';
 import Popup from '../../components/shared/Popup';
+import { register } from '../../api/user';
 
 const initials = {
   firstname: '',

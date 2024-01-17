@@ -10,9 +10,9 @@ import CheckIcon from '@mui/icons-material/Check';
 
 import TextField from '../../components/shared/TextField';
 import Popup from '../../components/shared/Popup';
-import { updateUser } from '../../api/auth';
 import { refreshUserSession } from '../../redux/auth/actions';
 import { selectUser } from '../../redux/auth/selector';
+import { updateUser } from '../../api/user';
 
 const initials = {
   username: '',
@@ -106,7 +106,7 @@ const UpdateUser = () => {
         </Stack>
       </Stack>
       <Button mt={2} sx={{ ':hover': { textDecoration: 'underline' } }}>
-        <Link to="/user/update/password">Update password</Link>
+        <Link to="/user/change-password">Update password</Link>
       </Button>
       <Popup
         title={error ?? 'User updated successfully!'}

@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { Route, HashRouter, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
@@ -15,12 +15,12 @@ const App = () => (
     <GlobalStyles styles={globalStyle} />
     <ErrorBoundary>
       <Suspense fallback={<Loader />}>
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route path="login" element={<AuthPage />} />
             <Route path="*" element={<UserModule />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </Suspense>
     </ErrorBoundary>
   </ThemeProvider>

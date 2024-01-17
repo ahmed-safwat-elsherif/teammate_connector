@@ -6,12 +6,17 @@ import Queries from '../pages/Queries';
 import SyncLogs from '../pages/SyncLogs';
 import SyncSettings from '../pages/SyncSettings';
 import NotFound from '../pages/NotFound';
+import AddUser from '../pages/user/AddUser';
 
 const User = () => (
   <AuthProvider>
     <Routes>
       <Route index element={<Home />} />
       <Route path="queries" element={<Queries />} />
+      <Route path="user">
+        <Route index element={<div>User actions</div>} />
+        <Route path="add-user" element={<AddUser />} />
+      </Route>
       <Route path="sync">
         <Route index element={<SyncLogs />} />
         <Route path="settings" element={<SyncSettings />} />

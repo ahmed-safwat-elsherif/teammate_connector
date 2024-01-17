@@ -1,7 +1,10 @@
 import React, { useCallback, useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import IconButton from '@mui/material/IconButton';
 import { Menu, MenuItem } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { revokeUserSession } from '../../redux/auth/actions';
 import { selectUser } from '../../redux/auth/selector';
@@ -45,7 +48,9 @@ const ProfileButton = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Add user</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link to="/user/add-user">Add user</Link>
+        </MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </>

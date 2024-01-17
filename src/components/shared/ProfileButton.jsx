@@ -51,6 +51,9 @@ const ProfileButton = () => {
         <MenuItem onClick={handleClose}>
           <Link to="/user/add-user">Add user</Link>
         </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link to="/user/update">Settings</Link>
+        </MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </>

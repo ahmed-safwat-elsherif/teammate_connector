@@ -9,6 +9,7 @@ import IntegrationInstructionsTwoToneIcon from '@mui/icons-material/IntegrationI
 import ReceiptLongTwoToneIcon from '@mui/icons-material/ReceiptLongTwoTone';
 import { Link } from 'react-router-dom';
 import RunSyncButton from '../components/sync/RunSyncButton';
+import DownloadOneSumX from '../components/home/DownloadOneSumX';
 
 const navigationCards = [
   {
@@ -17,9 +18,10 @@ const navigationCards = [
     icon: <PunchClockTwoToneIcon sx={{ fontSize: 50 }} />,
   },
   {
-    label: 'Queries Settings',
+    label: 'Export One-Sum X data',
     to: '/queries',
     icon: <IntegrationInstructionsTwoToneIcon sx={{ fontSize: 50 }} />,
+    Component: DownloadOneSumX,
   },
   {
     label: 'Syncronization Logs',
@@ -31,14 +33,18 @@ const navigationCards = [
 const Home = () => (
   <Stack alignItems="center" spacing={4}>
     <Stack direction="row" justifyContent="center" spacing={3}>
-      {navigationCards.map(card => (
-        <CardActionArea key={card.label} component={Link} {...card}>
-          <StyledCard>
-            {card.icon}
-            <Box>{card.label}</Box>
-          </StyledCard>
-        </CardActionArea>
-      ))}
+      {navigationCards.map(({ Component, ...card }) =>
+        Component ? (
+          <Component key={card.label} {...card} />
+        ) : (
+          <CardActionArea key={card.label} component={Link} {...card}>
+            <StyledCard>
+              {card.icon}
+              <Box>{card.label}</Box>
+            </StyledCard>
+          </CardActionArea>
+        )
+      )}
     </Stack>
     <Box>
       <RunSyncButton />

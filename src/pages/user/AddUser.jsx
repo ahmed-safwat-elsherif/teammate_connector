@@ -55,6 +55,20 @@ const AddUser = () => {
       >
         <Typography fontSize={20}>Add user</Typography>
         <TextField
+          label="First name"
+          onChange={handleChange}
+          name="firstname"
+          id="firstname"
+          value={formValues.firstname}
+        />
+        <TextField
+          label="Last name"
+          onChange={handleChange}
+          name="lastname"
+          id="lastname"
+          value={formValues.lastname}
+        />
+        <TextField
           label="User name"
           onChange={handleChange}
           name="username"
@@ -70,20 +84,6 @@ const AddUser = () => {
           value={formValues.password}
           required
         />
-        <TextField
-          label="First name"
-          onChange={handleChange}
-          name="firstname"
-          id="firstname"
-          value={formValues.firstname}
-        />
-        <TextField
-          label="Last name"
-          onChange={handleChange}
-          name="lastname"
-          id="lastname"
-          value={formValues.lastname}
-        />
         <Stack direction="row" justifyContent="flex-end" spacing={3}>
           <LoadingButton type="submit" loading={loading} variant="contained">
             Submit
@@ -96,7 +96,7 @@ const AddUser = () => {
       <Popup
         title={error ?? 'User registered successfully!'}
         titleIcon={
-          !error ? <CancelIcon sx={{ color: 'red' }} /> : <CheckIcon sx={{ color: 'green' }} />
+          error ? <CancelIcon sx={{ color: 'red' }} /> : <CheckIcon sx={{ color: 'green' }} />
         }
         maxWidth="sm"
         hasCloseIcon={!error}

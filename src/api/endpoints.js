@@ -4,3 +4,5 @@ export const SYNC_RUN = '/sync/run';
 export const LOGIN = '/auth/login';
 export const REGISTER = '/auth/register';
 export const REFRESH_TOKENS = '/auth/token/refresh';
+
+export const GET_OSX_DATA = '/sync/osx-data';

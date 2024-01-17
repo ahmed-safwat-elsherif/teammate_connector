@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CheckIcon from '@mui/icons-material/Check';
 import { Typography } from '@mui/material';
@@ -10,24 +10,29 @@ import TextField from '../../components/shared/TextField';
 import { register } from '../../api/auth';
 import Popup from '../../components/shared/Popup';
 
+const initials = {
+  firstname: '',
+  lastname: '',
+  password: '',
+  username: '',
+};
+
 const AddUser = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [error, setError] = useState();
-  const [formValues, setFormValues] = useState({
-    firstname: '',
-    lastname: '',
-    password: '',
-    username: '',
-  });
+  const [formValues, setFormValues] = useState(initials);
   const handleSubmit = useCallback(
     e => {
       e.preventDefault();
       setLoading(true);
       setError(null);
       register(formValues)
+        .then(() => {
+          setFormValues(initials);
+        })
         .catch(() => {
-          setError('User failed to be registeded');
+          setError('User failed to be registered!');
         })
         .finally(() => {
           setOpen(true);
@@ -41,6 +46,11 @@ const AddUser = () => {
     const { name, value } = e.target;
     setFormValues(prev => ({ ...prev, [name]: value }));
   };
+
+  const disabled = useMemo(() => {
+    const { username, password } = formValues;
+    return !(username.trim().length >= 3 && password.trim().length >= 6);
+  }, [formValues]);
 
   return (
     <>
@@ -69,19 +79,20 @@ const AddUser = () => {
           value={formValues.lastname}
         />
         <TextField
-          label="Email"
-          onChange={handleChange}
-          name="email"
-          id="email"
-          value={formValues.email}
-          required
-        />
-        <TextField
           label="User name"
           onChange={handleChange}
           name="username"
           id="username"
           value={formValues.username}
+          required
+          helperText="Username should be minimum 3 characters"
+        />
+        <TextField
+          label="Email"
+          onChange={handleChange}
+          name="email"
+          id="email"
+          value={formValues.email}
           required
         />
         <TextField
@@ -91,9 +102,10 @@ const AddUser = () => {
           id="password"
           value={formValues.password}
           required
+          helperText="Password should be minimum 6 characters"
         />
         <Stack direction="row" justifyContent="flex-end" spacing={3}>
-          <LoadingButton type="submit" loading={loading} variant="contained">
+          <LoadingButton disabled={disabled} type="submit" loading={loading} variant="contained">
             Submit
           </LoadingButton>
           <Button variant="outlined" component={Link} to="/">
@@ -107,7 +119,7 @@ const AddUser = () => {
           error ? <CancelIcon sx={{ color: 'red' }} /> : <CheckIcon sx={{ color: 'green' }} />
         }
         maxWidth="sm"
-        hasCloseIcon={!error}
+        hasCloseIcon={!!error}
         open={open}
         setOpen={setOpen}
       >

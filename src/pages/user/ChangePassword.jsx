@@ -1,5 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import LoadingButton from '@mui/lab/LoadingButton';
@@ -9,15 +11,20 @@ import CheckIcon from '@mui/icons-material/Check';
 import TextField from '../../components/shared/TextField';
 import Popup from '../../components/shared/Popup';
 import { updatePassword } from '../../api/auth';
+import { refreshUserSession } from '../../redux/auth/actions';
+
+const initials = {
+  password: '',
+  newPassword: '',
+};
 
 const ChangePassword = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [error, setError] = useState();
-  const [formValues, setFormValues] = useState({
-    password: '',
-    newPassword: '',
-  });
+  const [formValues, setFormValues] = useState(initials);
+
+  const dispatch = useDispatch();
 
   const handleChange = useCallback(e => {
     const { name, value } = e.target;
@@ -30,16 +37,26 @@ const ChangePassword = () => {
       setLoading(true);
       setError(null);
       updatePassword(formValues)
+        .then(() => {
+          setFormValues(initials);
+          dispatch(refreshUserSession());
+        })
         .catch(() => {
-          setError('User failed to be registeded');
+          setError('Failed to update!');
         })
         .finally(() => {
           setOpen(true);
           setLoading(false);
         });
     },
-    [formValues]
+    [formValues, dispatch]
   );
+
+  const disabled = useMemo(() => {
+    const { password, newPassword } = formValues;
+
+    return !(password.trim().length >= 6 && newPassword.trim().length >= 6);
+  }, [formValues]);
 
   return (
     <>
@@ -58,6 +75,7 @@ const ChangePassword = () => {
           id="password"
           onChange={handleChange}
           value={formValues.password}
+          helperText="Password should be minimum 6 characters"
         />
         <TextField
           label="New Password"
@@ -65,9 +83,10 @@ const ChangePassword = () => {
           id="newPassword"
           onChange={handleChange}
           value={formValues.newPassword}
+          helperText="Password should be minimum 6 characters"
         />
         <Stack direction="row" justifyContent="flex-end" spacing={3}>
-          <LoadingButton type="submit" loading={loading} variant="contained">
+          <LoadingButton disabled={disabled} type="submit" loading={loading} variant="contained">
             Submit
           </LoadingButton>
           <Button variant="outlined" component={Link} to="/">
@@ -76,12 +95,12 @@ const ChangePassword = () => {
         </Stack>
       </Stack>
       <Popup
-        title={error ?? 'User registered successfully!'}
+        title={error ?? 'Password updated successfully!'}
         titleIcon={
           error ? <CancelIcon sx={{ color: 'red' }} /> : <CheckIcon sx={{ color: 'green' }} />
         }
         maxWidth="sm"
-        hasCloseIcon={!error}
+        hasCloseIcon={!!error}
         open={open}
         setOpen={setOpen}
       >

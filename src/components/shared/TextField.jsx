@@ -5,7 +5,9 @@ import MuiTextField from '@mui/material/TextField';
 import { inputBaseClasses } from '@mui/material/InputBase';
 
 const styles = {
-  backgroundColor: 'white',
+  '& .MuiInputBase-root': {
+    backgroundColor: 'white',
+  },
   [`& .${inputBaseClasses.disabled}`]: {
     background: '#E5EBF0',
   },

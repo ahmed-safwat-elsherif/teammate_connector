@@ -9,7 +9,7 @@ const DownloadOneSumX = props => {
   const handleDownload = () => {
     getOsxData()
       .then(res => {
-        downloadCSV(res.data);
+        downloadCSV(res.data, 'OneSum-X');
       })
       .catch(() => {});
   };

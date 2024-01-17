@@ -26,7 +26,9 @@ const UpdateUser = () => {
   const [open, setOpen] = useState(false);
   const [error, setError] = useState();
   const user = useSelector(selectUser);
-  const [formValues, setFormValues] = useState({ ...initials, ...user });
+  const defaultValues = { ...initials, ...user };
+  console.log(defaultValues);
+  const [formValues, setFormValues] = useState(defaultValues);
 
   const dispatch = useDispatch();
 
@@ -43,7 +45,6 @@ const UpdateUser = () => {
       const { username, ...rest } = formValues;
       updateUser(rest)
         .then(() => {
-          setFormValues(initials);
           dispatch(refreshUserSession());
         })
         .catch(() => {

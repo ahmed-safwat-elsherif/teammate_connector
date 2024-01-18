@@ -9,3 +9,6 @@ export const UPDATE_USER = '/auth/user';
 export const UPDATE_PASSWORD = '/auth/password';
 // User Management
 export const USERS = '/auth/users';
+
+// Logs
+export const GET_LOGS_FILES = '/logs/files';

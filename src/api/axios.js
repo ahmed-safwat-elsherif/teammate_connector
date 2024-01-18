@@ -26,7 +26,7 @@ axios.interceptors.request.use(async config => {
   // case token has expired
   try {
     const response = await refreshTokens(refreshToken);
-    store?.dispatch(startUserSession({ ...response.data, refreshToken }));
+    store?.dispatch(startUserSession({ refreshToken, ...response.data }));
     const refreshedIdToken = response?.data?.idToken;
     if (idToken) {
       config.headers['Authorization'] = `Bearer ${refreshedIdToken}`;

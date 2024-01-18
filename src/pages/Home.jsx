@@ -13,7 +13,7 @@ import DownloadOneSumX from '../components/home/DownloadOneSumX';
 
 const navigationCards = [
   {
-    label: 'Syncronization Settings',
+    label: 'Synchronization Settings',
     to: '/sync/settings',
     icon: <PunchClockTwoToneIcon sx={{ fontSize: 50 }} />,
   },
@@ -24,7 +24,7 @@ const navigationCards = [
     Component: DownloadOneSumX,
   },
   {
-    label: 'Syncronization Logs',
+    label: 'Synchronization Logs',
     to: '/sync',
     icon: <ReceiptLongTwoToneIcon sx={{ fontSize: 50 }} />,
   },

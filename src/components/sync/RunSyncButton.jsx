@@ -28,10 +28,10 @@ const RunSyncButton = () => {
   const statusMsg = useMemo(() => {
     switch (syncStatus) {
       case SyncStatus.InProgress:
-        return 'Syncronization process is still in progress, You will be notified once it is done!';
+        return 'Synchronization process is still in progress, You will be notified once it is done!';
 
       case SyncStatus.Started:
-        return 'Syncronization process is started, You will be notified once it is done!';
+        return 'Synchronization process is started, You will be notified once it is done!';
 
       default:
         return '';
@@ -43,7 +43,7 @@ const RunSyncButton = () => {
       <LoadingButton loading={loading} color="info" variant="contained" onClick={handleRunSync}>
         Run sync
       </LoadingButton>
-      <Popup title="Syncronization alert!" open={open} setOpen={setOpen} maxWidth="sm">
+      <Popup title="Synchronization alert!" open={open} setOpen={setOpen} maxWidth="sm">
         <Box sx={{ textAlign: 'center' }}>{statusMsg}</Box>
       </Popup>
     </>

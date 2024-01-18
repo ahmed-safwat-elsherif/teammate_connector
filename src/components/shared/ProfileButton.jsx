@@ -7,11 +7,13 @@ import Avatar from '@mui/material/Avatar';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { revokeUserSession } from '../../redux/auth/actions';
-import { selectUser } from '../../redux/auth/selector';
+import { selectIsAdmin, selectUser } from '../../redux/auth/selector';
 
 const ProfileButton = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const isAdmin = useSelector(selectIsAdmin);
+
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -37,7 +39,11 @@ const ProfileButton = () => {
         sx={{ p: 0 }}
         onClick={handleClick}
       >
-        <Avatar alt={`${firstname} ${lastname}`} src="/static/images/avatar/2.jpg" />
+        <Avatar
+          alt={`${firstname} ${lastname}`}
+          sx={{ color: '#164863', fontWeight: 600, textTransform: 'uppercase' }}
+          src="/static/images/avatar/2.jpg"
+        />
       </IconButton>
       <Menu
         id="basic-menu"
@@ -48,11 +54,13 @@ const ProfileButton = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
+        {isAdmin && (
+          <MenuItem onClick={handleClose}>
+            <Link to="/users">Users</Link>
+          </MenuItem>
+        )}
         <MenuItem onClick={handleClose}>
-          <Link to="/user/add-user">Add user</Link>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link to="/user">Settings</Link>
+          <Link to="/profile">Settings</Link>
         </MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>

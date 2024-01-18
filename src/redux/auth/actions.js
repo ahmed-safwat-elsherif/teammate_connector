@@ -28,8 +28,7 @@ export const refreshUserSession = () => dispatch => {
     dispatch(startLoading());
     refreshTokens(refreshToken)
       .then(response => {
-        console.log(response);
-        dispatch(startUserSession({ ...response.data, refreshToken }));
+        dispatch(startUserSession({ refreshToken, ...response.data }));
       })
       .catch(() => {
         dispatch(revokeUserSession());

@@ -13,7 +13,7 @@ const routes = [
   },
   {
     path: '/sync',
-    breadcrumb: 'Syncronization',
+    breadcrumb: 'Synchronization',
   },
   {
     path: '/sync/settings',

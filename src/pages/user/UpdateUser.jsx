@@ -27,7 +27,7 @@ const UpdateUser = () => {
   const [error, setError] = useState();
   const user = useSelector(selectUser);
   const defaultValues = { ...initials, ...user };
-  console.log(defaultValues);
+
   const [formValues, setFormValues] = useState(defaultValues);
 
   const dispatch = useDispatch();
@@ -107,7 +107,7 @@ const UpdateUser = () => {
         </Stack>
       </Stack>
       <Button mt={2} sx={{ ':hover': { textDecoration: 'underline' } }}>
-        <Link to="/user/change-password">Update password</Link>
+        <Link to="/profile/change-password">Update password</Link>
       </Button>
       <Popup
         title={error ?? 'User updated successfully!'}

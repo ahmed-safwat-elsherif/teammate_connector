@@ -6,12 +6,15 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import LoadingButton from '@mui/lab/LoadingButton';
+import CancelIcon from '@mui/icons-material/Cancel';
+import CheckIcon from '@mui/icons-material/Check';
 
 import Select from '../../shared/Select';
 import Popup from '../../shared/Popup';
 import { CRON_TYPES } from '../../../utils/cronJob';
 import TimingSelectors from './TimingSelectors';
 import { createSettings } from '../../../api/sync';
+import DeleteSystemBtn from './DeleteSystemBtn';
 
 const styles = {
   select: { minWidth: 200, '& .MuiInputBase-root': { backgroundColor: 'white' } },
@@ -57,6 +60,7 @@ const getInitialValues = settings => ({
 const SettingsForm = props => {
   const { settings: initialSettings } = props;
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
   const [error, setError] = useState();
   const [formValues, setFormValues] = useState(() => getInitialValues(initialSettings));
 
@@ -76,11 +80,13 @@ const SettingsForm = props => {
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       };
       setLoading(true);
+      setError(null);
       createSettings(settings)
         .catch(err => {
           setError(err.response.data.message);
         })
         .finally(() => {
+          setOpen(true);
           setLoading(false);
         });
     },
@@ -104,7 +110,7 @@ const SettingsForm = props => {
             Save
           </LoadingButton>
         </Box>
-        <Divider sx={{ my: 2 }} />
+        <Divider sx={{ my: 2, borderWidth: '1px' }} />
         <Stack
           flex={1}
           direction="row"
@@ -136,8 +142,22 @@ const SettingsForm = props => {
           </Stack>
         </Stack>
       </Stack>
-      <Popup title="Error just occurred" open={!!error} setOpen={() => setError(null)}>
-        <Box>{error}</Box>
+      <Divider sx={{ my: 2, borderWidth: '1px' }} />
+      <Box>
+        <DeleteSystemBtn />
+      </Box>
+      <Popup
+        title="Synchronization Settings"
+        titleIcon={
+          error ? <CancelIcon sx={{ color: 'red' }} /> : <CheckIcon sx={{ color: 'green' }} />
+        }
+        open={open}
+        setOpen={setOpen}
+        maxWidth="sm"
+      >
+        <Box textAlign="center" my={3}>
+          {error || 'Synchronization settings were set successfully!'}
+        </Box>
       </Popup>
     </>
   );

@@ -30,7 +30,7 @@ const SyncSettings = () => {
   if (error) {
     return (
       <Box>
-        <Typography color="">{error}</Typography>
+        <Typography color="red">{error}</Typography>
       </Box>
     );
   }

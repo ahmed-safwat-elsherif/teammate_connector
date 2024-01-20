@@ -1,6 +1,7 @@
 export const SYNC_SETTINGS = '/sync/settings';
 export const SYNC_RUN = '/sync/run';
 export const GET_OSX_DATA = '/sync/osx-data';
+export const CLEAR_TABLES = '/sync/tables/rows';
 
 export const LOGIN = '/auth/login';
 export const REGISTER = '/auth/register';

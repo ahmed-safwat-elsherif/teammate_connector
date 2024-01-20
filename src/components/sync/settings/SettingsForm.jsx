@@ -12,6 +12,7 @@ import Popup from '../../shared/Popup';
 import { CRON_TYPES } from '../../../utils/cronJob';
 import TimingSelectors from './TimingSelectors';
 import { createSettings } from '../../../api/sync';
+import DeleteSystemBtn from './DeleteSystemBtn';
 
 const styles = {
   select: { minWidth: 200, '& .MuiInputBase-root': { backgroundColor: 'white' } },
@@ -104,7 +105,7 @@ const SettingsForm = props => {
             Save
           </LoadingButton>
         </Box>
-        <Divider sx={{ my: 2 }} />
+        <Divider sx={{ my: 2, borderWidth: '1px' }} />
         <Stack
           flex={1}
           direction="row"
@@ -136,6 +137,10 @@ const SettingsForm = props => {
           </Stack>
         </Stack>
       </Stack>
+      <Divider sx={{ my: 2, borderWidth: '1px' }} />
+      <Box>
+        <DeleteSystemBtn />
+      </Box>
       <Popup title="Error just occurred" open={!!error} setOpen={() => setError(null)}>
         <Box>{error}</Box>
       </Popup>

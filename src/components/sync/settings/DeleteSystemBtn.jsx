@@ -8,12 +8,13 @@ import Typography from '@mui/material/Typography';
 import Popup from '../../shared/Popup';
 import { endLoading, startLoading } from '../../../redux/status/actions';
 import { clearSystemTables } from '../../../api/sync';
+import useAdmin from '../../../hooks/useAdmin';
 
 const DeleteSystemBtn = () => {
   const [openConfirm, setOpenConfirm] = useState(false);
   const [openResult, setOpenResult] = useState(false);
   const [errorResult, setErrorResult] = useState();
-
+  const { isAdmin } = useAdmin();
   const dispatch = useDispatch();
 
   const handleClick = useCallback(() => {
@@ -29,6 +30,8 @@ const DeleteSystemBtn = () => {
         dispatch(endLoading());
       });
   }, [dispatch]);
+
+  if (!isAdmin) return null;
 
   return (
     <>

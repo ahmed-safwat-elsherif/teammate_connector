@@ -35,6 +35,9 @@ export const statusSlice = createSlice({
       state.hasError = true;
       state.errorMessage = action.payload;
     },
+    refresh: state => {
+      state.refreshes++;
+    },
     clear: state => ({ ...initialState, isLoading: state.isLoading, refreshes: state.refreshes }),
   },
 });

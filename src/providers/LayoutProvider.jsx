@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 import Stack from '@mui/material/Stack';
-import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 
 import Navbar from '../components/shared/Navbar';
@@ -25,9 +24,9 @@ const LayoutProvider = props => {
         <CssBaseline />
         <Navbar />
         <Breadcrumb />
-        <Box component="main" sx={{ flexGrow: 1, p: 3, backgroundColor: '#DDF2FD' }}>
+        <Stack component="main" sx={{ flexGrow: 1, p: 3, backgroundColor: '#DDF2FD' }}>
           <Suspense fallback={<Loader />}>{children}</Suspense>
-        </Box>
+        </Stack>
         <Footer />
       </Stack>
     </>

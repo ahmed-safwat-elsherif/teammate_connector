@@ -10,6 +10,7 @@ import ReceiptLongTwoToneIcon from '@mui/icons-material/ReceiptLongTwoTone';
 import { Link } from 'react-router-dom';
 import RunSyncButton from '../components/sync/RunSyncButton';
 import DownloadOneSumX from '../components/home/DownloadOneSumX';
+import SyncProgress from '../components/sync/SyncProgress';
 
 const navigationCards = [
   {
@@ -31,23 +32,28 @@ const navigationCards = [
 ];
 
 const Home = () => (
-  <Stack alignItems="center" spacing={4}>
-    <Stack direction="row" justifyContent="center" spacing={3}>
-      {navigationCards.map(({ Component, ...card }) =>
-        Component ? (
-          <Component key={card.label} {...card} />
-        ) : (
-          <CardActionArea key={card.label} component={Link} {...card}>
-            <StyledCard>
-              {card.icon}
-              <Box>{card.label}</Box>
-            </StyledCard>
-          </CardActionArea>
-        )
-      )}
+  <Stack flex={1} spacing={2}>
+    <Stack flex={1} alignItems="center" spacing={4}>
+      <Stack direction="row" justifyContent="center" spacing={3}>
+        {navigationCards.map(({ Component, ...card }) =>
+          Component ? (
+            <Component key={card.label} {...card} />
+          ) : (
+            <CardActionArea key={card.label} component={Link} {...card}>
+              <StyledCard>
+                {card.icon}
+                <Box>{card.label}</Box>
+              </StyledCard>
+            </CardActionArea>
+          )
+        )}
+      </Stack>
+      <Box>
+        <RunSyncButton />
+      </Box>
     </Stack>
     <Box>
-      <RunSyncButton />
+      <SyncProgress />
     </Box>
   </Stack>
 );

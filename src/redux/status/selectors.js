@@ -29,3 +29,8 @@ export const selectErrorMessage = createSelector(
   state => state.status,
   status => status.errorMessage
 );
+
+export const selectRefreshes = createSelector(
+  state => state.status,
+  status => status.refreshes
+);

@@ -51,8 +51,8 @@ const initialQuarterMonths = [
 const getInitialValues = settings => ({
   weekDay: '',
   monthDay: '',
-  quarterMonths: initialQuarterMonths,
   ...settings,
+  quarterMonths: settings?.quarterMonths?.length ? settings.quarterMonths : initialQuarterMonths,
   type: settings?.type || '',
   time: moment(settings.time || undefined, 'HH:mm:ss'),
 });

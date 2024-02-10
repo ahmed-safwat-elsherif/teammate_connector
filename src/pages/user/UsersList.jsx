@@ -49,12 +49,13 @@ const UsersList = () => {
 
   if (loading) return <Loader />;
 
-  if (error)
+  if (error) {
     return (
       <Box color="red" fontSize={20}>
         {error}
       </Box>
     );
+  }
 
   return (
     <>
